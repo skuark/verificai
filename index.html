@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VerificAI — Verificación de noticias con IA</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✅</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -34,9 +35,9 @@
     </div>
   </header>
 
-  <div class="mb-6 p-5 bg-white border border-[#E3E3DE] rounded-[13px] shadow-sm" id="intro-block">
-    <p class="text-sm text-[#555555] leading-[1.7] mb-3.5" id="intro-p1">Los bulos se propagan más rápido que los desmentidos. <strong class="text-[#111111] font-semibold">VerificAI</strong> convierte cualquier noticia, titular o URL en un prompt de verificación estructurado, con instrucciones precisas para que la IA busque fuentes oficiales, detecte patrones de bulo conocidos y clasifique la información antes de que la compartas.</p>
-    <p class="text-sm text-[#555555] leading-[1.7]" id="intro-p2">No requiere registro, no almacena datos y funciona con cualquier IA: ChatGPT, Gemini o Perplexity.</p>
+  <div class="mb-6" id="intro-block">
+    <p class="text-[15px] text-[#555555] leading-[1.7]" id="intro-p1">Los bulos se propagan más rápido que los desmentidos. <strong class="text-[#111111] font-semibold">VerificAI</strong> convierte cualquier noticia, titular o URL en un prompt de verificación estructurado, con instrucciones precisas para que la IA busque fuentes oficiales, detecte patrones de bulo conocidos y clasifique la información antes de que la compartas. No requiere registro y funciona con cualquier IA: ChatGPT, Gemini, Perplexity o Claude.</p>
+    <p class="hidden" id="intro-p2"></p>
   </div>
 
   <div class="bg-white border border-[#E3E3DE] rounded-[13px] p-5 mb-3 shadow-sm">
@@ -44,7 +45,7 @@
     <textarea
       id="user-input"
       class="w-full min-h-[112px] resize-y border border-[#E3E3DE] rounded-[9px] p-[10px_12px] text-sm bg-[#F7F7F5] text-[#111111] leading-relaxed focus:outline-none focus:border-[#1D9E75] focus:ring-[3px] focus:ring-[#1D9E75]/[0.13] placeholder-[#9A9A9A] transition-[border-color,box-shadow]"
-      style="font-family:inherit"
+      style="font-family:inherit; font-size: 16px;"
       placeholder="Pega aquí el texto, titular o URL que quieres contrastar..."
     ></textarea>
     <button

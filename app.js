@@ -75,8 +75,8 @@ Return the internal analysis first, then the WhatsApp message ready to copy.`
 const UI = {
   es: {
     tagline: "Genera un prompt de verificación y ábrelo en tu IA favorita",
-    introP1: 'Los bulos se propagan más rápido que los desmentidos. <strong>VerificAI</strong> convierte cualquier noticia, titular o URL en un prompt de verificación estructurado, con instrucciones precisas para que la IA busque fuentes oficiales, detecte patrones de bulo conocidos y clasifique la información antes de que la compartas.',
-    introP2: 'No requiere registro y funciona con cualquier IA: ChatGPT, Gemini o Perplexity.',
+    introP1: 'Los bulos se propagan más rápido que los desmentidos. <strong>VerificAI</strong> convierte cualquier noticia, titular o URL en un prompt de verificación estructurado, con instrucciones precisas para que la IA busque fuentes oficiales, detecte patrones de bulo conocidos y clasifique la información antes de que la compartas. No requiere registro y funciona con cualquier IA: ChatGPT, Gemini, Perplexity o Claude.',
+    introP2: '',
     labelInput: "Noticia o URL a verificar",
     placeholder: "Pega aquí el texto, titular o URL que quieres contrastar...",
     genBtn: "Generar prompt",
@@ -94,8 +94,8 @@ const UI = {
   },
   en: {
     tagline: "Generate a fact-checking prompt and open it in your favourite AI",
-    introP1: 'Hoaxes spread faster than fact-checks. <strong>VerificAI</strong> turns any news story, headline, or URL into a structured verification prompt — with precise instructions for the AI to search official sources, detect known hoax patterns, and classify the information before you share it.',
-    introP2: 'No sign-up required. Works with any AI: ChatGPT, Gemini, or Perplexity.',
+    introP1: 'Hoaxes spread faster than fact-checks. <strong>VerificAI</strong> turns any news story, headline, or URL into a structured verification prompt — with precise instructions for the AI to search official sources, detect known hoax patterns, and classify the information before you share it. No sign-up required. Works with any AI: ChatGPT, Gemini, Perplexity, or Claude.',
+    introP2: '',
     labelInput: "News or URL to verify",
     placeholder: "Paste the text, headline or URL you want to fact-check...",
     genBtn: "Generate prompt",
@@ -157,6 +157,13 @@ function generatePrompt() {
   }
   currentPrompt = PROMPTS[currentLang](input);
   document.getElementById('prompt-box').textContent = currentPrompt;
+  // Pre-set all platform hrefs so the browser follows them as plain links —
+  // no window.open() needed, which avoids mobile popup blockers entirely.
+  const encoded = encodeURIComponent(currentPrompt);
+  document.getElementById('btn-chatgpt').href    = 'https://chatgpt.com/';
+  document.getElementById('btn-gemini').href     = 'https://gemini.google.com/app';
+  document.getElementById('btn-perplexity').href = `https://www.perplexity.ai/?q=${encoded}`;
+  document.getElementById('btn-claude').href     = 'https://claude.ai/new';
   const output = document.getElementById('prompt-output');
   output.classList.remove('visible');
   void output.offsetWidth; // force reflow to re-trigger animation
@@ -188,18 +195,13 @@ function showToast(msg) {
 }
 
 function openPlatform(platform, e) {
-  e.preventDefault();
-  if (!currentPrompt) return;
-  const encoded = encodeURIComponent(currentPrompt);
-  // Perplexity supports ?q= pre-fill; ChatGPT and Gemini do not reliably,
-  // so we copy to clipboard and open the base URL instead.
-  const urls = {
-    chatgpt:    'https://chatgpt.com/',
-    gemini:     'https://gemini.google.com/app',
-    perplexity: `https://www.perplexity.ai/?q=${encoded}`,
-    claude:     'https://claude.ai/new',
-  };
-  if (platform === 'chatgpt' || platform === 'gemini' || platform === 'claude') {
+  if (!currentPrompt) {
+    e.preventDefault();
+    return;
+  }
+  // Perplexity pre-fills via ?q= so no clipboard needed.
+  // ChatGPT, Gemini and Claude don't support URL pre-fill, so copy to clipboard.
+  if (platform !== 'perplexity') {
     navigator.clipboard.writeText(currentPrompt).then(() => {
       const msg = currentLang === 'es'
         ? 'Prompt copiado — pégalo en el chat'
@@ -207,7 +209,7 @@ function openPlatform(platform, e) {
       showToast(msg);
     });
   }
-  window.open(urls[platform], '_blank');
+  // Navigation is handled by the pre-set href — no window.open() needed.
 }
 
 // Initialize UI with the detected browser language
