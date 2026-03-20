@@ -1,0 +1,72 @@
+/* Dot-grid background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 22px 22px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Fade-in animation for output card */
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Output card — toggled by JS */
+.prompt-output { display: none; }
+.prompt-output.visible {
+  display: block;
+  animation: fadeSlideIn 0.28s ease forwards;
+}
+
+/* Language button active state — toggled by JS */
+.lang-btn.active {
+  background: #111111;
+  color: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+/* Copy button copied state — toggled by JS */
+.copy-btn.copied {
+  color: #1D9E75;
+  border-color: #1D9E75;
+  background: #EBF5F1;
+}
+
+/* Toast — toggled by JS */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: #111111;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: 22px;
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 100;
+  font-family: inherit;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Custom scrollbar for prompt box */
+#prompt-box::-webkit-scrollbar { width: 4px; }
+#prompt-box::-webkit-scrollbar-track { background: transparent; }
+#prompt-box::-webkit-scrollbar-thumb { background: #C5C5BF; border-radius: 2px; }
+
+/* Responsive */
+@media (max-width: 420px) {
+  body { padding: 1.75rem 1rem 3rem; }
+}
