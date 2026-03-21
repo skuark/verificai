@@ -28,10 +28,11 @@ Paso 5 — Genera el mensaje de WhatsApp en español con estas reglas:
 - Solo incluye afirmaciones respaldadas directamente por las fuentes citadas
 - Incluye solo URLs reales y verificadas de medios rigurosos
 - Explica brevemente por qué existe la duda (patrón conocido, ausencia de cobertura, desmentido oficial, etc.)
-- Termina siempre con: "Contrasta siempre antes de compartir."
+- Termina siempre con: "Contrasta siempre antes de compartir." El objetivo es que este mensaje también sea didáctico y ayude a la gente a pensar dos veces antes de compartir informaciones no contrastadas.
 - Tono: neutral, factual, respetuoso. Sin alarmismo.
 - Longitud: adecuada para WhatsApp (máximo 1500 caracteres si es posible)
 - No incluyas descripciones raciales o étnicas de sospechosos salvo que provengan directamente de un comunicado policial oficial y sean directamente relevantes para la verificación
+- Si es un patrón habitual de bulo, incluye casos similares que fueron desmentidos y las implicaciones que tuvo la difusión de ese bulo si las hubo, referenciando con un enlace a una fuente seria que lo desmienta.
 
 Devuelve primero el análisis interno y luego el mensaje de WhatsApp listo para copiar.`,
 
@@ -64,10 +65,11 @@ Step 5 — Generate the WhatsApp message in English with these rules:
 - Only include claims directly supported by the cited sources
 - Only include real, verified URLs from credible outlets
 - Briefly explain why doubt exists (known pattern, lack of coverage, official denial, etc.)
-- End with: "Always verify before sharing."
+- End with: "Always verify before sharing." The goal is for this message to be educational and help people think twice before sharing unverified information.
 - Tone: neutral, factual, respectful. No alarmism.
 - Length: suitable for WhatsApp (under 1500 characters if possible)
 - Do not include racial or ethnic descriptions of suspects unless they come directly from an official police statement and are directly relevant to the verification
+- If this is a recurring hoax pattern, include similar cases that were debunked and the consequences that the spread of that hoax had, if any, referencing a credible source that debunks it with a link
 
 Return the internal analysis first, then the WhatsApp message ready to copy.`
 };
